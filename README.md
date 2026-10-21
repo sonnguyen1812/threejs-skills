@@ -9,21 +9,6 @@ The skills target **three.js r186** (`three@0.186`), React Three Fiber 9.8 with 
 Claude Code knows three.js from its training data, which mixes many releases. A lot changed between r160 and r186: `RGBELoader` became `HDRLoader`, `Clock` gave way to `Timer`, `PostProcessing` became `RenderPipeline`, WebGL 1 support is gone, and the three.js docs now tell LLMs to use `WebGPURenderer` with TSL for custom shaders and materials. These skills give Claude Code the current API, working examples, and a Common Mistakes list of the outdated patterns models still reach for.
 
 ## Installation
-### As a Claude Code Plugin (Recommended)
-
-**Standard 2-Step Flow:**
-```bash
-/plugin marketplace add sonnguyen1812/threejs-skills
-/plugin install threejs-skills
-```
-
-**Or One-Step Flow (Claude Code v2.1.275+):**
-```bash
-/plugin install threejs-skills --marketplace sonnguyen1812/threejs-skills
-```
-
-*(See [PLUGIN.md](PLUGIN.md) for full details and local directory options).*
-
 With the [skills](https://skills.sh) CLI:
 
 ```bash
@@ -111,3 +96,18 @@ MIT, see [LICENSE](LICENSE).
 ## Acknowledgments
 
 - [Three.js](https://threejs.org/) - the 3D library these skills document
+
+## Claude Code Plugin
+
+This repository also ships as a native Claude Code plugin:
+
+```bash
+# Standard 2-step install (All versions):
+/plugin marketplace add sonnguyen1812/threejs-skills
+/plugin install threejs-skills
+
+# Or 1-step install (Claude Code v2.1.275+):
+/plugin install threejs-skills --marketplace sonnguyen1812/threejs-skills
+```
+
+For local directory loading and details, see [PLUGIN.md](PLUGIN.md).
