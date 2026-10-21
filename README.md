@@ -15,6 +15,14 @@ With the [skills](https://skills.sh) CLI:
 ```bash
 npx skills add cloudai-x/threejs-skills
 ```
+### As a Claude Code plugin
+
+This repo also ships a `.claude-plugin/` manifest, so it installs as a plugin:
+
+```bash
+/plugin install threejs-skills --marketplace sonnguyen1812/threejs-skills
+```
+
 
 Or manually. Claude Code loads skills from `~/.claude/skills/` (all your projects) or `.claude/skills/` (one project):
 

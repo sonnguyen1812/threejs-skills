@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "threejs-skills",
+  "description": "Three.js r186 and React Three Fiber skills for Claude Code — scene setup, geometry, materials, lighting, shaders (TSL), loaders, performance, and R3F",
+  "owner": {
+    "name": "sonnguyen1812",
+    "url": "https://github.com/sonnguyen1812"
+  },
+  "plugins": [
+    {
+      "name": "threejs-skills",
+      "description": "Three.js r186 and React Three Fiber skills — fundamentals, geometry, materials, lighting, textures, animation, loaders, shaders, postprocessing, interaction, performance, R3F, and asset pipeline",
+      "author": {
+        "name": "sonnguyen1812",
+        "url": "https://github.com/sonnguyen1812/threejs-skills"
+      },
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}
