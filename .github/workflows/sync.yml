@@ -3,7 +3,13 @@ name: Auto Sync Upstream
 on:
   schedule:
     - cron: '0 2 * * *'   # 2:00 AM UTC (9:00 AM VN) hàng ngày
-  workflow_dispatch:        # Kích hoạt thủ công trên GitHub web bất cứ lúc nào
+  workflow_dispatch:
+    inputs:
+      force_bump:
+        description: 'Force version bump even if no upstream changes'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   sync:
@@ -21,9 +27,31 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Merge upstream changes
+      - name: Merge upstream and auto-bump version
         run: |
           git remote add upstream https://github.com/CloudAI-X/threejs-skills.git || true
           git fetch upstream main
-          git merge upstream/main -m "chore: sync upstream changes" -X theirs --no-edit
+
+          PREV_SHA=$(git rev-parse HEAD)
+          git merge upstream/main -m "chore: sync upstream changes" -X theirs --no-edit || true
+          NEW_SHA=$(git rev-parse HEAD)
+
+          if [ "$PREV_SHA" != "$NEW_SHA" ] || [ "${{ github.event.inputs.force_bump }}" = "true" ]; then
+            echo "Changes detected or force_bump requested. Incrementing patch version in plugin.json..."
+            node -e '
+              const fs = require("fs");
+              const file = "./.claude-plugin/plugin.json";
+              const json = JSON.parse(fs.readFileSync(file, "utf8"));
+              const parts = (json.version || "1.0.0").split(".").map(Number);
+              parts[2] = (parts[2] || 0) + 1;
+              json.version = parts.join(".");
+              fs.writeFileSync(file, JSON.stringify(json, null, 2) + "\n");
+              console.log("Bumped version to:", json.version);
+            '
+            git add .claude-plugin/plugin.json
+            git commit -m "chore: bump plugin version [skip ci]" || echo "No changes to commit"
+          else
+            echo "No upstream changes. Version unchanged."
+          fi
+
           git push origin main
