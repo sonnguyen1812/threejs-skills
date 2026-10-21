@@ -1,0 +1,6 @@
+{
+  "name": "threejs-skills",
+  "description": "Three.js r186 and React Three Fiber skills for Claude Code, Cursor, and other AI agents",
+  "version": "1.0.0",
+  "skills": "./skills/"
+}
