@@ -33,7 +33,7 @@ jobs:
           git fetch upstream main
 
           PREV_SHA=$(git rev-parse HEAD)
-          git merge upstream/main -m "chore: sync upstream changes" -X theirs --no-edit || true
+          git merge upstream/main -m "chore: sync upstream changes" -X theirs --no-edit
           NEW_SHA=$(git rev-parse HEAD)
 
           if [ "$PREV_SHA" != "$NEW_SHA" ] || [ "${{ github.event.inputs.force_bump }}" = "true" ]; then
