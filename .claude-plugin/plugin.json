@@ -2,7 +2,6 @@
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "threejs-skills",
   "displayName": "Three.js Skills",
-  "version": "1.0.0",
   "description": "Three.js r186 and React Three Fiber skills for Claude Code — scene setup, geometry, materials, lighting, shaders (TSL), loaders, performance, and R3F",
   "author": {
     "name": "sonnguyen1812",
